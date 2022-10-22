@@ -183,7 +183,11 @@ export function renameQuestionById(
     targetId: number,
     newName: string
 ): Question[] {
-    return [];
+    let newArray = [];
+    for (let i = 0; i < questions.length; i++) newArray.push({...questions[i]});
+    let location = questions.findIndex((question: Question): boolean => (question.id == targetId));
+    newArray[location].name = newName;
+    return newArray;
 }
 
 /***
@@ -198,7 +202,15 @@ export function changeQuestionTypeById(
     targetId: number,
     newQuestionType: QuestionType
 ): Question[] {
-    return [];
+    let newArray = questions.map((question: Question): Question => ({
+        ...question,
+    }));
+    let location = newArray.findIndex((question: Question): boolean => (question.id == targetId));
+    if (newArray[location].type == "multiple_choice_question" && newQuestionType == "short_answer_question") {
+        newArray[location].options = [];
+    }
+    newArray[location].type = newQuestionType;
+    return newArray;
 }
 
 /**
