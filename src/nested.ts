@@ -123,7 +123,13 @@ export function makeAnswers(questions: Question[]): Answer[] {
  * each question is now published, regardless of its previous published status.
  */
 export function publishAll(questions: Question[]): Question[] {
-    return [];
+    let newArray = [];    
+    for (let i = 0; i < questions.length; i++) {
+        let tempQuestion = {...questions[i]}
+        tempQuestion.published = true;
+        newArray.push(tempQuestion);
+    }
+    return newArray;
 }
 
 /***
@@ -131,7 +137,23 @@ export function publishAll(questions: Question[]): Question[] {
  * are the same type. They can be any type, as long as they are all the SAME type.
  */
 export function sameType(questions: Question[]): boolean {
-    return false;
+    let allSame = questions.every((question: Question): boolean => (question.type == questions[0].type));
+    return allSame;
+}
+export function makeBlankQuestion(
+    id: number,
+    name: string,
+    type: QuestionType
+): Question {
+    return {    
+    id: id,
+    name: name,
+    type: type,
+    body: "",
+    expected: "",
+    options: [],
+    points: 1,
+    published: false};
 }
 
 /***
@@ -145,7 +167,10 @@ export function addNewQuestion(
     name: string,
     type: QuestionType
 ): Question[] {
-    return [];
+    let newQuestions = [...questions];
+    let newQuestion = makeBlankQuestion(id, name, type);
+    newQuestions.push(newQuestion);
+    return newQuestions;
 }
 
 /***
