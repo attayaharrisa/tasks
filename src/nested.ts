@@ -229,7 +229,18 @@ export function editOption(
     targetOptionIndex: number,
     newOption: string
 ): Question[] {
-    return [];
+    let newArray = questions.map((question: Question): Question => ({
+        ...question,
+        options: [...question.options],
+    }));
+    let location = newArray.findIndex((question: Question): boolean => (question.id == targetId));
+    if (targetOptionIndex == -1){
+        newArray[location].options.push(newOption);
+    }
+    else {
+        newArray[location].options[targetOptionIndex] = newOption;
+    }
+    return newArray;
 }
 
 /***
@@ -238,10 +249,35 @@ export function editOption(
  * the duplicate inserted directly after the original question. Use the `duplicateQuestion`
  * function you defined previously; the `newId` is the parameter to use for the duplicate's ID.
  */
+export function duplicateQuestion(id: number, oldQuestion: Question): Question {
+    let newQuestion = {...oldQuestion};
+    newQuestion.name = "Copy of " + oldQuestion.name;
+    newQuestion.published = false;
+    newQuestion.id = id;
+    return newQuestion;
+}
+
 export function duplicateQuestionInArray(
     questions: Question[],
     targetId: number,
     newId: number
 ): Question[] {
-    return [];
+    let newArray = questions.map((question: Question): Question => ({
+        ...question,
+        options: [...question.options],
+    }));
+    let location = newArray.findIndex((question: Question): boolean => (question.id == targetId));
+    let newQuestion = duplicateQuestion(newId, newArray[location]);
+    newArray.splice(location + 1, 0, newQuestion);
+    
+    return newArray;
 }
+
+
+
+
+
+
+
+
+
