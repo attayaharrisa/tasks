@@ -28,7 +28,7 @@ export function tripleNumbers(numbers: number[]): number[] {
  * the number cannot be parsed as an integer, convert it to 0 instead.
  */
 export function stringsToIntegers(numbers: string[]): number[] {
-    let newNumbers = numbers.map((i: number): number => (isNaN(i)) ? (0): parseInt(i));
+    let newNumbers = numbers.map((i: string): number => (isNaN(i)) ? (0): parseInt(i));
     return newNumbers;
 }
 
@@ -42,8 +42,8 @@ export function stringsToIntegers(numbers: string[]): number[] {
 export const removeDollars = (amounts: string[]): number[] => {
     //Remove first
     //Perform operations later?
-    let noDollars = amounts.map((i: number): number => i.replace('$',''));
-    let newNumbers = noDollars.map((i: number): number => (isNaN(i) || i == '') ? (0): parseInt(i));
+    let noDollars = amounts.map((i: string): string => i.replace('$',''));
+    let newNumbers = noDollars.map((i: string): number => (isNaN(i) || i == '') ? (0): parseInt(i));
     return newNumbers;
 };
 
