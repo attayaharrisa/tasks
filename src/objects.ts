@@ -115,7 +115,6 @@ export function renameQuestion(question: Question, newName: string): Question {
 export function publishQuestion(question: Question): Question {
     let newQuestion = {...question};    
     newQuestion.published = !newQuestion.published;
-    console.log("Old Question: ", question, "New Question: ", newQuestion);
     return newQuestion;
 }
 
@@ -126,7 +125,6 @@ export function publishQuestion(question: Question): Question {
  * The `published` field should be reset to false.
  */
 export function duplicateQuestion(id: number, oldQuestion: Question): Question {
-    console.log("Old Question", oldQuestion);
     let newQuestion = {...oldQuestion};
     newQuestion.name = "Copy of " + oldQuestion.name;
     newQuestion.published = false;
@@ -164,5 +162,11 @@ export function mergeQuestion(
     contentQuestion: Question,
     { points }: { points: number }
 ): Question {
-    return contentQuestion;
+    let newQuestion = {...contentQuestion, options: [...contentQuestion.options]};
+    newQuestion.id = id;
+    newQuestion.name = name;
+    newQuestion.points = points;    
+    newQuestion.published = false;
+    
+    return newQuestion;
 }
