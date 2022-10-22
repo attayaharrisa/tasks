@@ -68,7 +68,8 @@ export function sumPoints(questions: Question[]): number {
  * Consumes an array of questions and returns the sum total of the PUBLISHED questions.
  */
 export function sumPublishedPoints(questions: Question[]): number {
-    return 0;
+    let pubSum = questions.reduce((currentTotal: number, question: Question) => (currentTotal += (question.published == true) ? question.points: 0), 0);
+    return pubSum;
 }
 
 /***
@@ -89,7 +90,12 @@ id,name,options,points,published
  * Check the unit tests for more examples!
  */
 export function toCSV(questions: Question[]): string {
-    return "";
+    let returnString = "";
+    returnString += "id,name,options,points,published";
+    for (let i = 0; i < questions.length; i++) {
+        returnString += "\n" + questions[i].id + "," + questions[i].name + "," + questions[i].options.length + "," + questions[i].points + "," + questions[i].published;
+    }
+    return returnString;
 }
 
 /**
@@ -98,7 +104,18 @@ export function toCSV(questions: Question[]): string {
  * making the `text` an empty string, and using false for both `submitted` and `correct`.
  */
 export function makeAnswers(questions: Question[]): Answer[] {
-    return [];
+    let answerArray = [];
+    for (let i = 0; i < questions.length; i++) {
+        let tempAnswer = {
+            questionId: questions[i].id,
+            text: "",
+            submitted: false,
+            correct: false
+        };
+        answerArray.push(tempAnswer);
+        
+    }
+    return answerArray;
 }
 
 /***
