@@ -94,7 +94,6 @@ export function toMarkdown(question: Question): string {
             returnString += "\n- " + question.options[i];
         }
     }
-    console.log(returnString);
     return returnString;
 }
 
@@ -103,8 +102,9 @@ export function toMarkdown(question: Question): string {
  * `newName`.
  */
 export function renameQuestion(question: Question, newName: string): Question {
-    question.name = newName;    
-    return question;
+    let newQuestion = {...question};
+    newQuestion.name = newName;
+    return newQuestion;
 }
 
 /**
@@ -113,7 +113,10 @@ export function renameQuestion(question: Question, newName: string): Question {
  * published; if it was published, now it should be not published.
  */
 export function publishQuestion(question: Question): Question {
-    return question;
+    let newQuestion = {...question};    
+    newQuestion.published = !newQuestion.published;
+    console.log("Old Question: ", question, "New Question: ", newQuestion);
+    return newQuestion;
 }
 
 /**
@@ -123,7 +126,12 @@ export function publishQuestion(question: Question): Question {
  * The `published` field should be reset to false.
  */
 export function duplicateQuestion(id: number, oldQuestion: Question): Question {
-    return oldQuestion;
+    console.log("Old Question", oldQuestion);
+    let newQuestion = {...oldQuestion};
+    newQuestion.name = "Copy of " + oldQuestion.name;
+    newQuestion.published = false;
+    newQuestion.id = id;
+    return newQuestion;
 }
 
 /**
@@ -134,7 +142,12 @@ export function duplicateQuestion(id: number, oldQuestion: Question): Question {
  * Check out the subsection about "Nested Fields" for more information.
  */
 export function addOption(question: Question, newOption: string): Question {
-    return question;
+    let newQuestion = {
+    ...question,
+    options: [...question.options]    
+    }
+    newQuestion.options.push(newOption);
+    return newQuestion;
 }
 
 /**
