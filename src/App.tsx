@@ -10,7 +10,8 @@ function App(): JSX.Element {
     return (
         <div className="App">
             <header className="App-header">
-                <h1>This is a header for COS420 HTML and CSS Task</h1>
+                <h1>This is a header for HTML and CSS Task</h1>
+                UM COS420 with React Hooks and TypeScript
             </header>
             <p>
                 <img src={computer} alt="This is where a picture should be" />
