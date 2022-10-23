@@ -60,7 +60,7 @@ function App(): JSX.Element {
                 </Row>
             </Container>
             <header>
-                <h1>UM COS420 with React Hooks and TypeScript</h1>
+                <div>UM COS420 with React Hooks and TypeScript</div>
             </header>
             <hr></hr>
             <Counter></Counter>
