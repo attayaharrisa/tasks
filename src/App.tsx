@@ -69,7 +69,7 @@ function App(): JSX.Element {
                 <div>UM COS420 with React Hooks and TypeScript</div>
             </header>
             <hr></hr>
-            {/*<DoubleHalf></DoubleHalf>*/}
+            {<DoubleHalf></DoubleHalf>}
             <hr></hr>
             <ChooseTeam></ChooseTeam>
             <hr></hr>
