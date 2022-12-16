@@ -26,7 +26,7 @@ function App(): JSX.Element {
     return (
         <div className="App">
             <header className="App-header">
-                UM COS420 with React Hooks and TypeScript
+                UM COS420 with React Hooks and TypeScript Hello World
             </header>
             <hr></hr>
             <CheckAnswer expectedAnswer="42"></CheckAnswer>
