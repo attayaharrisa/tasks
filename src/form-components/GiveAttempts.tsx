@@ -25,6 +25,7 @@ export function GiveAttempts(): JSX.Element {
             <h3>Give Attempts</h3>
             <div>{numTries}</div>
             <Form.Control
+                type="number"
                 value={incrementAmount}
                 onChange={inChangeHandler}
                 placeholder={"Increment Amount"}
